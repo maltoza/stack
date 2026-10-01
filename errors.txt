@@ -1,0 +1,149 @@
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: stack_init
+Line number:   124
+---------------------------------------
+        num_elems: 0
+        capacity:  10
+        first_el:  00BF1620
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: push
+Line number:   170
+---------------------------------------
+        num_elems: 0
+        capacity:  10
+        first_el:  00BF1620
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: push
+Line number:   179
+---------------------------------------
+        num_elems: 1
+        capacity:  10
+        first_el:  00BF1620
+    lem [0]: s
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: push
+Line number:   170
+---------------------------------------
+        num_elems: 1
+        capacity:  10
+        first_el:  00BF1620
+    lem [0]: s
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: push
+Line number:   179
+---------------------------------------
+        num_elems: 2
+        capacity:  10
+        first_el:  00BF1620
+    lem [0]: s
+    lem [1]: k
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: push
+Line number:   170
+---------------------------------------
+        num_elems: 2
+        capacity:  10
+        first_el:  00BF1620
+    lem [0]: s
+    lem [1]: k
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: push
+Line number:   179
+---------------------------------------
+        num_elems: 3
+        capacity:  10
+        first_el:  00BF1620
+    lem [0]: s
+    lem [1]: k
+    lem [2]: m
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: pop
+Line number:   149
+---------------------------------------
+        num_elems: 3
+        capacity:  10
+        first_el:  00BF1620
+    lem [0]: s
+    lem [1]: k
+    lem [2]: m
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: pop
+Line number:   159
+---------------------------------------
+        num_elems: 2
+        capacity:  10
+        first_el:  00BF1620
+    lem [0]: s
+    lem [1]: k
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: pop
+Line number:   149
+---------------------------------------
+        num_elems: 2
+        capacity:  10
+        first_el:  00BF1620
+    lem [0]: s
+    lem [1]: k
+======================================
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: pop
+Line number:   159
+---------------------------------------
+        num_elems: 1
+        capacity:  10
+        first_el:  00BF1620
+    lem [0]: s
+======================================

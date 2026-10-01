@@ -1,0 +1,12 @@
+======================================
+           VERIFICATE OK
+======================================
+ERROR INFORMATION:
+File name:     ./src/stack.cpp
+Function name: stack_init
+Line number:   124
+---------------------------------------
+        num_elems: 0
+        capacity:  10
+        first_el:  00BD1720
+======================================
