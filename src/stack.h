@@ -5,8 +5,8 @@
 #include <malloc.h>
 #include <assert.h>
 
-#define STCK_CANARY1 0x12345678
-#define STCK_CANARY2 0x87654321
+#define STCK_CANARY1 -1
+#define STCK_CANARY2 -2
 
 // тип элементов в стеке
 typedef char stck_el;
@@ -14,7 +14,7 @@ typedef char stck_el;
 // ошибки
 enum ERRORS
 {
-    FUNK_OK = 0,        // функция завершена без ошибок
+    FUNC_OK = 0,        // функция завершена без ошибок
     ERRORS_MEMALLOC,    // ошибка выделения памяти
     ERRORS_EMPTY,       // пустой стек
     ERRORS_INIT,        // ошибка в инициализации стека
@@ -42,12 +42,12 @@ struct err_t
 
 struct stack_t
 {
-    unsigned int canary_stck1;
+    int canary_stck1;
     err_t error;        // ошибки
     stck_el* first_el;  // указатель на первый элемент
     size_t   num_elems; // количество элементов в стеке
     size_t   capacity;  // размер стека (кол-во ячеек)
-    unsigned int canary_stck2;
+    int canary_stck2;
 };
 
 ERRORS stack_init(stack_t* stck, size_t capacity);
@@ -56,7 +56,6 @@ void stack_close(stack_t* stck);
 ERRORS pop(stack_t* stck);
 ERRORS push(stack_t* stck, stck_el elem);
 ERRORS get_mem(stack_t* stck);
-
-
+ERRORS del_mem(stack_t* stck);
 
 #endif // STACK_H

@@ -84,18 +84,21 @@ void stack_print_err(stack_t stck, ERRORS_STCK result)
         fprintf (err, "           VERIFICATE ERROR\n");
     }
     fprintf (err, "======================================\n");
-    fprintf (err, "ERROR INFORMATION:\n");
+    fprintf (err, "INFORMATION:\n");
     fprintf (err, "File name:     %s\n", stck.error.file);
     fprintf (err, "Function name: %s\n", stck.error.func);
     fprintf (err, "Line number:   %d\n", stck.error.line);
     fprintf (err, "---------------------------------------\n");
-    fprintf (err, "        num_elems: %d\n", stck.num_elems);
-    fprintf (err, "        capacity:  %d\n", stck.capacity);
-    fprintf (err, "        first_el:  %p\n", stck.first_el);
+    fprintf (err, "    num_elems: %d\n", stck.num_elems);
+    fprintf (err, "    capacity:  %d\n", stck.capacity);
+    fprintf (err, "    stack canary1: %d\n", stck.canary_stck1);
+    fprintf (err, "    stack canary2: %d\n", stck.canary_stck2);
+    fprintf (err, "    first_el:  %p\n", stck.first_el);
+    fprintf (err, "---------------------------------------\n");
     for (size_t i = 0; i < stck.num_elems; i++) {
-        fprintf (err, "    lem [%d]: %c\n", i, stck.first_el[i]);
+        fprintf (err, "        elem [%d]: %c\n", i, stck.first_el[i]);
     }
-    fprintf (err, "======================================\n");
+    fprintf (err, "======================================\n\n\n");
 
     fclose(err);
     return;
@@ -123,7 +126,7 @@ ERRORS stack_init(stack_t* stck, size_t capacity)
 
     STCK_ASSERT(stck);
 
-    return FUNK_OK;
+    return FUNC_OK;
 }
 
 
@@ -156,9 +159,14 @@ ERRORS pop(stack_t* stck)
     stck->first_el[stck->num_elems - 1] = '\0';
     stck->num_elems--;
 
+    if (stck->num_elems < stck->capacity / 2 - 1)
+    {
+        del_mem(stck);
+    }
+
     STCK_ASSERT(stck);
 
-    return FUNK_OK;
+    return FUNC_OK;
 }
 
 
@@ -178,16 +186,14 @@ ERRORS push(stack_t* stck, stck_el elem)
 
     STCK_ASSERT(stck);
 
-    return FUNK_OK;
+    return FUNC_OK;
 }
 
 
-
+// увеличение памяти стека
 ERRORS get_mem(stack_t* stck)
 {
     assert(stck != NULL);
-    
-    STCK_ASSERT(stck);
 
     void* temp = realloc((void*)stck, stck->capacity * 2);
     if (temp == NULL) return ERRORS_GMEM;
@@ -195,9 +201,21 @@ ERRORS get_mem(stack_t* stck)
     stck->first_el = (stck_el*)temp;
     stck->capacity = stck->capacity * 2;
 
-    STCK_ASSERT(stck);
+    return FUNC_OK;
+}
 
-    return FUNK_OK;
+// уменьшение памяти стека
+ERRORS del_mem(stack_t* stck)
+{
+    assert(stck != NULL);
+
+    void* temp = realloc((void*)stck, stck->capacity / 2);
+    if (temp == NULL) return ERRORS_GMEM;
+
+    stck->first_el = (stck_el*)temp;
+    stck->capacity = stck->capacity / 2;
+
+    return FUNC_OK;
 }
 
 

@@ -17,6 +17,7 @@ int main()
 
     test_pop(&stck);
     test_pop(&stck);
+    test_pop(&stck);
     
     stack_close(&stck);
 
