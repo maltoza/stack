@@ -9,15 +9,15 @@ int main()
 {    
     stack_t stck;
 
-    test_stack_init(&stck);
+    stack_init(&stck, 1);
 
-    test_push(&stck, 's');
-    test_push(&stck, 'k');
-    test_push(&stck, 'm');
+    push(&stck, 's');
+    push(&stck, 'k');
+    push(&stck, 'm');
 
-    test_pop(&stck);
-    test_pop(&stck);
-    test_pop(&stck);
+    pop(&stck);
+    pop(&stck);
+    pop(&stck);
     
     stack_close(&stck);
 

@@ -1,239 +1,255 @@
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: stack_init
-Line number:   127
+Line number:   131
 ---------------------------------------
     num_elems: 0
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  1
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
+        elem [0]: ?
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: push
-Line number:   178
+Line number:   177
 ---------------------------------------
     num_elems: 0
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  1
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
+        elem [0]: ?
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: push
-Line number:   187
+Line number:   186
 ---------------------------------------
     num_elems: 1
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  1
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
+       *elem [0]: s
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: push
-Line number:   178
+Line number:   177
 ---------------------------------------
     num_elems: 1
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  1
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
+       *elem [0]: s
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: push
-Line number:   187
+Line number:   186
 ---------------------------------------
     num_elems: 2
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  2
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
-        elem [1]: k
+       *elem [0]: s
+       *elem [1]: k
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: push
-Line number:   178
+Line number:   177
 ---------------------------------------
     num_elems: 2
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  2
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
-        elem [1]: k
+       *elem [0]: s
+       *elem [1]: k
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: push
-Line number:   187
+Line number:   186
 ---------------------------------------
     num_elems: 3
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  4
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
-        elem [1]: k
-        elem [2]: m
+       *elem [0]: s
+       *elem [1]: k
+       *elem [2]: m
+        elem [3]: ?
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: pop
-Line number:   152
+Line number:   153
 ---------------------------------------
     num_elems: 3
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  4
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
-        elem [1]: k
-        elem [2]: m
+       *elem [0]: s
+       *elem [1]: k
+       *elem [2]: m
+        elem [3]: ?
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: pop
-Line number:   167
+Line number:   168
 ---------------------------------------
     num_elems: 2
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  4
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
-        elem [1]: k
+       *elem [0]: s
+       *elem [1]: k
+        elem [2]: ?
+        elem [3]: ?
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: pop
-Line number:   152
+Line number:   153
 ---------------------------------------
     num_elems: 2
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  4
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
-        elem [1]: k
+       *elem [0]: s
+       *elem [1]: k
+        elem [2]: ?
+        elem [3]: ?
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: pop
-Line number:   167
+Line number:   168
 ---------------------------------------
     num_elems: 1
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  4
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
+       *elem [0]: s
+        elem [1]: ?
+        elem [2]: ?
+        elem [3]: ?
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: pop
-Line number:   152
+Line number:   153
 ---------------------------------------
     num_elems: 1
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  4
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
-        elem [0]: s
+       *elem [0]: s
+        elem [1]: ?
+        elem [2]: ?
+        elem [3]: ?
 ======================================
 
 
 ======================================
-           VERIFICATE OK
+            VERIFICATE OK
 ======================================
-INFORMATION:
+            INFORMATION:
 File name:     ./src/stack.cpp
 Function name: pop
-Line number:   167
+Line number:   168
 ---------------------------------------
     num_elems: 0
-    capacity:  10
-    stack canary1: -1
-    stack canary2: -2
-    first_el:  00691620
+    capacity:  2
+    struct canary begin:  -1
+    struct canary finish: -2
+    first_el:  00E315C0
 ---------------------------------------
+        elem [0]: ?
+        elem [1]: ?
 ======================================
 
 

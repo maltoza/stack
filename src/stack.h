@@ -5,8 +5,10 @@
 #include <malloc.h>
 #include <assert.h>
 
-#define STCK_CANARY1 -1
-#define STCK_CANARY2 -2
+#define POISON 63
+#define STRUCT_CANARY1 -1
+#define STRUCT_CANARY2 -2
+
 
 // тип элементов в стеке
 typedef char stck_el;
@@ -20,17 +22,19 @@ enum ERRORS
     ERRORS_INIT,        // ошибка в инициализации стека
     ERRORS_POP,         // ошибка удаления элемента
     ERRORS_PUSH,        // ошибка добавления элемента
-    ERRORS_GMEM         // ошибка изменения размера стека
+    ERRORS_GMEM,        // ошибка изменения размера стека
+    ERRORS_DMEM         // ошибка уменьшения памяти
 };
 
+// ошибки стека
 enum ERRORS_STCK
 {
     ERRORS_STCK_OK = 0,     // нет ошибок
     ERRORS_STCK_NULLPTR,    // нулевой указатель на стек
     ERRORS_STCK_CAPACITY,   // ошибка размера стека
     ERRORS_STCK_NUMELEM,    // ошибка количества элементов
-    ERRORS_STCK_CANARY1,    // ошибка начальной канарейки стека
-    ERRORS_STCK_CANARY2     // ошибка конечной канарейки стека
+    ERRORS_STRUCT_CANARY1,    // ошибка начальной канарейки стека
+    ERRORS_STRUCT_CANARY2     // ошибка конечной канарейки стека
 };
 
 struct err_t
@@ -42,12 +46,12 @@ struct err_t
 
 struct stack_t
 {
-    int canary_stck1;
-    err_t error;        // ошибки
-    stck_el* first_el;  // указатель на первый элемент
-    size_t   num_elems; // количество элементов в стеке
-    size_t   capacity;  // размер стека (кол-во ячеек)
-    int canary_stck2;
+    int      canary_stck1;
+    err_t    error;        // ошибки
+    stck_el* first_el;     // указатель на первый элемент
+    size_t   num_elems;    // количество элементов в стеке
+    size_t   capacity;     // размер стека (кол-во ячеек)
+    int      canary_stck2;
 };
 
 ERRORS stack_init(stack_t* stck, size_t capacity);
@@ -57,5 +61,6 @@ ERRORS pop(stack_t* stck);
 ERRORS push(stack_t* stck, stck_el elem);
 ERRORS get_mem(stack_t* stck);
 ERRORS del_mem(stack_t* stck);
+ERRORS fill_poison(stack_t* stck, int start);
 
 #endif // STACK_H
