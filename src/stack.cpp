@@ -17,7 +17,7 @@ void stack_assert(stack_t* stck, const char* file_name, const char* func_name, i
     stack_print_err(*stck, result);
     assert(result == ERRORS_STCK_OK);
 }
-
+// TODO bush
 
 // проверкаа стека
 ERRORS_STCK stack_verificate(stack_t* stck, const char* file_name, const char* func_name, int line)
