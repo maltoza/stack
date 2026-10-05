@@ -19,7 +19,7 @@ void stack_assert(stack_t* stck, const char* file_name, const char* func_name, i
 }
 // TODO bush
 
-// проверкаа стека
+// проверка стека
 ERRORS_STCK stack_verificate(stack_t* stck, const char* file_name, const char* func_name, int line)
 {
     if (stck == NULL)
