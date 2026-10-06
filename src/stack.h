@@ -4,14 +4,19 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <assert.h>
+#include <string.h>
+#include <stdlib.h>
 
 #define POISON 63
-#define STRUCT_CANARY1 -1
-#define STRUCT_CANARY2 -2
+#define STCK_CANARY_START 123
+#define STCK_CANARY_END 124
 
 
 // тип элементов в стеке
 typedef char stck_el;
+// тип канарейки
+typedef char canary_t;
+
 
 // ошибки
 enum ERRORS
@@ -46,12 +51,14 @@ struct err_t
 
 struct stack_t
 {
-    int      canary_stck1;
-    err_t    error;        // ошибки
-    stck_el* first_el;     // указатель на первый элемент
-    size_t   num_elems;    // количество элементов в стеке
-    size_t   capacity;     // размер стека (кол-во ячеек)
-    int      canary_stck2;
+    canary_t          canary_stck_start;
+    err_t             error;            // ошибки
+    canary_t*         canary_buf_start; // указатель на начальную канарейку буфера
+    void*             buffer;           // указатель на буфер
+    canary_t*         canary_buf_end;   // указатель на конечную канарейку буфера
+    size_t            num_elems;        // количество элементов в стеке
+    size_t            capacity;         // размер стека (кол-во ячеек)
+    canary_t          canary_stck_end;
 };
 
 ERRORS stack_init(stack_t* stck, size_t capacity);
