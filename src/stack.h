@@ -10,6 +10,8 @@
 #define POISON 63
 #define STCK_CANARY_START 123
 #define STCK_CANARY_END 124
+#define BUF_CANARY_START 125
+#define BUF_CANARY_END 126
 
 
 // тип элементов в стеке

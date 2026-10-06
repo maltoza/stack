@@ -57,14 +57,14 @@ ERRORS_STCK stack_verificate(stack_t* stck, const char* file_name, const char* f
         stck->error.line = line;
         return ERRORS_STRUCT_CANARY2;
     }
-    else if (*(stck->canary_buf_start) != STCK_CANARY_START)
+    else if (*(stck->canary_buf_start) != BUF_CANARY_START)
     {
         stck->error.file = file_name;
         stck->error.func = func_name;
         stck->error.line = line;
         return ERRORS_STRUCT_CANARY1;
     }
-    else if (*(stck->canary_buf_end) != STCK_CANARY_END)
+    else if (*(stck->canary_buf_end) != BUF_CANARY_END)
     {
         stck->error.file = file_name;
         stck->error.func = func_name;
@@ -138,13 +138,13 @@ ERRORS stack_init(stack_t* stck, size_t capacity)
     if (stck->buffer == NULL) return ERRORS_MEMALLOC;
 
     stck->canary_buf_start = (canary_t*)stck->buffer;
-    *stck->canary_buf_start = STCK_CANARY_START;
+    *stck->canary_buf_start = BUF_CANARY_START;
     stck->buffer = (void*)(((canary_t*)stck->buffer) + 1);
     fill_poison(stck, 0);
     stck->num_elems = 0;
     stck->capacity = capacity;
     stck->canary_buf_end = (canary_t*)(((stck_el*)stck->buffer) + capacity);
-    *stck->canary_buf_end = STCK_CANARY_END;
+    *stck->canary_buf_end = BUF_CANARY_END;
 
     STCK_ASSERT(stck);
 
@@ -206,11 +206,11 @@ ERRORS get_mem(stack_t* stck)
     void* temp = realloc((void*)stck->canary_buf_start, 2 * stck->capacity * sizeof(stck_el) + 2 * sizeof(canary_t));
     if (temp == NULL) return ERRORS_GMEM;
     stck->canary_buf_start = (canary_t*)temp;
-    *stck->canary_buf_start = STCK_CANARY_START;
+    *stck->canary_buf_start = BUF_CANARY_START;
     stck->buffer = (stck_el*)((char*)temp + 1);
     stck->capacity = stck->capacity * 2;
     stck->canary_buf_end = (canary_t*)((char*)stck->buffer + stck->capacity);
-    *stck->canary_buf_end = STCK_CANARY_END;
+    *stck->canary_buf_end = BUF_CANARY_END;
     fill_poison(stck, stck->num_elems);
 
     return FUNC_OK;
@@ -222,11 +222,11 @@ ERRORS del_mem(stack_t* stck)
     void* temp = realloc((void*)stck->canary_buf_start, stck->capacity / 2 * sizeof(stck_el) + 2 * sizeof(canary_t));
     if (temp == NULL) return ERRORS_GMEM;
     stck->canary_buf_start = (canary_t*)temp;
-    *stck->canary_buf_start = STCK_CANARY_START;
+    *stck->canary_buf_start = BUF_CANARY_START;
     stck->buffer = (stck_el*)((char*)temp + 1);
     stck->capacity = stck->capacity / 2;
     stck->canary_buf_end = (canary_t*)((char*)stck->buffer + stck->capacity);
-    *stck->canary_buf_end = STCK_CANARY_END;
+    *stck->canary_buf_end = BUF_CANARY_END;
     fill_poison(stck, stck->num_elems);
     
     return FUNC_OK;
