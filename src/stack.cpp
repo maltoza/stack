@@ -7,12 +7,12 @@
 #endif
 
 
-void stack_assert(stack_t* stck, const char* file_name, const char* func_name, int line);
-ERRORS_STCK stack_verificate(stack_t* stck, const char* file_name, const char* func_name, int line);
-void stack_print_err(stack_t stck, ERRORS_STCK result);
+void stack_assert(stack_t* const stck, const char* file_name, const char* func_name, const int line);
+ERRORS_STCK stack_verificate(stack_t* const stck, const char* file_name, const char* func_name, const int line);
+void stack_print_err(stack_t stck, const ERRORS_STCK result);
 
 // завершение работы
-void stack_assert(stack_t* stck, const char* file_name, const char* func_name, int line)
+void stack_assert(stack_t* const stck, const char* file_name, const char* func_name, const int line)
 {
     ERRORS_STCK result = stack_verificate(stck, file_name, func_name, line);
     stack_print_err(*stck, result);
@@ -20,7 +20,7 @@ void stack_assert(stack_t* stck, const char* file_name, const char* func_name, i
 }
 
 // проверка стека
-ERRORS_STCK stack_verificate(stack_t* stck, const char* file_name, const char* func_name, int line)
+ERRORS_STCK stack_verificate(stack_t* const stck, const char* file_name, const char* func_name, const int line)
 {
     if (stck == NULL)
     {
@@ -82,7 +82,7 @@ ERRORS_STCK stack_verificate(stack_t* stck, const char* file_name, const char* f
 }
 
 // вывод ошибок в файл
-void stack_print_err(stack_t stck, ERRORS_STCK result)
+void stack_print_err(stack_t stck, const ERRORS_STCK result)
 {
     FILE* err = fopen("errors.txt", "a+");
 
@@ -127,7 +127,7 @@ void stack_print_err(stack_t stck, ERRORS_STCK result)
 
 
 // создание стека
-ERRORS stack_init(stack_t* stck, size_t capacity)
+ERRORS stack_init(stack_t* const stck, const size_t capacity)
 {
     FILE* file = fopen("errors.txt", "w");
     fclose(file);
@@ -154,7 +154,7 @@ ERRORS stack_init(stack_t* stck, size_t capacity)
 
 
 // удаление стека
-void stack_close(stack_t* stck)
+void stack_close(stack_t* const stck)
 {
     free(stck->canary_buf_start);
     stck->buffer = NULL;
@@ -169,29 +169,32 @@ void stack_close(stack_t* stck)
 }
 
 
+
 // удаление элемента из стека
-ERRORS pop(stack_t* stck)
+ERRORS pop(stack_t* const stck, stck_el* const out)
 {
     STCK_ASSERT(stck);
     
     if (stck->num_elems == 0) return ERRORS_EMPTY;
-    
+
+    memcpy(out, &((stck_el*)stck->buffer)[stck->num_elems - 1], sizeof(stck_el));
     ((stck_el*)stck->buffer)[--stck->num_elems] = POISON;
     
-    if ((stck->capacity > 1) && (stck->num_elems < (stck->capacity) / 2)) del_mem(stck);
+    check_memory(stck);
     
     STCK_ASSERT(stck);
+
     
     return FUNC_OK;
 }
 
 
 // добавление элемента в стек
-ERRORS push(stack_t* stck, stck_el elem)
+ERRORS push(stack_t* const stck, const stck_el elem)
 {
     STCK_ASSERT(stck);
     
-    if (stck->num_elems == stck->capacity) get_mem(stck); 
+    check_memory(stck);
     ((stck_el*)stck->buffer)[stck->num_elems++] = elem;
     
     STCK_ASSERT(stck);
@@ -200,8 +203,15 @@ ERRORS push(stack_t* stck, stck_el elem)
 }
 
 
+ERRORS check_memory(stack_t* const stck) {
+    if (stck->num_elems == stck->capacity) get_mem(stck);
+    else if ((stck->capacity > 1) && (stck->num_elems < (stck->capacity) / 2)) del_mem(stck);
+
+    return FUNC_OK;
+}
+
 // увеличение памяти стека
-ERRORS get_mem(stack_t* stck)
+ERRORS get_mem(stack_t* const stck)
 {
     void* temp = realloc((void*)stck->canary_buf_start, 2 * stck->capacity * sizeof(stck_el) + 2 * sizeof(canary_t));
     if (temp == NULL) return ERRORS_GMEM;
@@ -217,7 +227,7 @@ ERRORS get_mem(stack_t* stck)
 }
 
 // уменьшение памяти стека
-ERRORS del_mem(stack_t* stck)
+ERRORS del_mem(stack_t* const stck)
 {
     void* temp = realloc((void*)stck->canary_buf_start, stck->capacity / 2 * sizeof(stck_el) + 2 * sizeof(canary_t));
     if (temp == NULL) return ERRORS_GMEM;
@@ -234,7 +244,7 @@ ERRORS del_mem(stack_t* stck)
 
 
 // заполнение ядовитыми значениями
-ERRORS fill_poison(stack_t* stck, int start)
+ERRORS fill_poison(stack_t* const stck, const int start)
 {
     //memset(&(((stck_el*)stck->buffer)[start]), POISON, stck->capacity - sizeof(stck_el) * (start - 1));
 
